@@ -3,7 +3,7 @@ import IAuthBusiness, {
   ILoginResponse,
   ISignUpRequest,
   ISignUpResponse,
-} from "./IAuthBusiness";
+} from "./IAuthBusiness"
 import { injectable } from "inversify"
 
 @injectable()
