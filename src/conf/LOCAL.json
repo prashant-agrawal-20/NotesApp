@@ -1,0 +1,7 @@
+{
+  "appName": "NotesApp",
+  "loggingDir": "logs",
+  "serverConfig": {
+    "port": 3000
+  }
+}

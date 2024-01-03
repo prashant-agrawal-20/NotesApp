@@ -1,12 +1,17 @@
 import * as express from "express"
 import { Container, inject } from "inversify"
-import { controller, httpPost } from "inversify-express-utils"
-import { ILoginResponse } from "../auth/IAuthBusiness"
+import { controller, httpGet, httpPost } from "inversify-express-utils"
+import IAuthBusiness, { ILoginResponse } from "../services/auth/IAuthBusiness"
+import { TYPES } from "../ioc/types"
+import { ILogger } from "../logger/ILogger"
 
 export function authControllerFactory(kernel: Container) {
   @controller("/api/auth")
   class AuthController {
-    constructor() {}
+    constructor(
+        @inject(TYPES.AuthBusiness) private authBusiness: IAuthBusiness,
+        @inject(TYPES.ILogger) private logger: ILogger
+    ) {}
     @httpPost("/signup")
     async emailSignup(
       req: express.Request,
