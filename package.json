@@ -3,6 +3,7 @@
   "version": "1.0.0",
   "description": "",
   "main": "index.js",
+  "author": "Prashant Agrawal",
   "scripts": {
     "build": "tsc --project tsconfig.json && pnpm copy-configs && pnpm tslint",
     "test": "echo \"Error: no test specified\" && exit 1",
@@ -44,6 +45,5 @@
     "node": ">=18"
   },
   "keywords": [],
-  "author": "",
   "license": "ISC"
 }
