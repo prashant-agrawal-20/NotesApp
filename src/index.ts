@@ -22,24 +22,27 @@ server.setConfig((app: express.Application) => {
   app.use(limiter)
 })
 const app = server.build()
-const appConfigs = kernel.get<Configuration>(TYPES.Configuration).getConfiguration() || {}
-connectMongo().then((data) => {
-  logger.info("Connected to mongo successfully....")
-  const port = _.get(appConfigs, "serverConfig.port", 3000)
-  const httpServer = app.listen(port, () => {
-    console.log("MotesApp backend server is running on:" + port)
-  })
-  httpServer.on("connection", function (socket) {
-    socket.setKeepAlive(true, 5)
-    socket.setTimeout(120 * 1000)
-    socket.on("timeout", () => {
-      logger.error("socket timeout")
-      socket.end()
+const appConfigs =
+  kernel.get<Configuration>(TYPES.Configuration).getConfiguration() || {}
+connectMongo()
+  .then((data) => {
+    logger.info("Connected to mongo successfully....")
+    const port = _.get(appConfigs, "serverConfig.port", 3000)
+    const httpServer = app.listen(port, () => {
+      console.log("MotesApp backend server is running on:" + port)
     })
+    httpServer.on("connection", function (socket) {
+      socket.setKeepAlive(true, 5)
+      socket.setTimeout(120 * 1000)
+      socket.on("timeout", () => {
+        logger.error("socket timeout")
+        socket.end()
+      })
+    })
+    httpServer.keepAliveTimeout = 120 * 1000
+    httpServer.headersTimeout = 120 * 1000
   })
-  httpServer.keepAliveTimeout = 120 * 1000
-  httpServer.headersTimeout = 120 * 1000
-}).catch((err) => {
-  logger.error("Error while connecting to mongo...", {error: err})
-  throw err
-})
+  .catch((err) => {
+    logger.error("Error while connecting to mongo...", { error: err })
+    throw err
+  })

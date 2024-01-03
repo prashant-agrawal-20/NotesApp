@@ -7,7 +7,6 @@ import IAuthBusiness, {
 } from "./IAuthBusiness"
 import { injectable } from "inversify"
 
-
 @injectable()
 class AuthBusiness implements IAuthBusiness {
   constructor() {}
@@ -15,7 +14,7 @@ class AuthBusiness implements IAuthBusiness {
     await UserModel.create({
       userId: signUpRequest.emailId,
       password: signUpRequest.password,
-      phoneNumber: signUpRequest.phoneNumber
+      phoneNumber: signUpRequest.phoneNumber,
     })
     return { success: true }
   }
