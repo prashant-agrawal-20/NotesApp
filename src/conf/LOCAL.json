@@ -3,5 +3,8 @@
   "loggingDir": "logs",
   "serverConfig": {
     "port": 3000
+  },
+  "logging": {
+    "logToConsole": true
   }
 }
