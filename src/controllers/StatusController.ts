@@ -5,17 +5,14 @@ import { ILogger } from "../logger/ILogger"
 import { TYPES } from "../ioc/types"
 
 export function statusControllerFactory(kernel: Container) {
-    @controller("/api/status")
-    class StatusController {
-        constructor(
-            @inject(TYPES.ILogger) private logger: ILogger
-        ) {
-        }
-        @httpGet("/")
-        async getStatus(req: express.Request): Promise<string> {
-            return "Status is OK"
-        }
+  @controller("/api/status")
+  class StatusController {
+    constructor(@inject(TYPES.ILogger) private logger: ILogger) {}
+    @httpGet("/")
+    async getStatus(req: express.Request): Promise<string> {
+      return "Status is OK"
     }
+  }
 }
 
 export default statusControllerFactory

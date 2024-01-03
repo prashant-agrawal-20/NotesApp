@@ -9,8 +9,8 @@ export function authControllerFactory(kernel: Container) {
   @controller("/api/auth")
   class AuthController {
     constructor(
-        @inject(TYPES.AuthBusiness) private authBusiness: IAuthBusiness,
-        @inject(TYPES.ILogger) private logger: ILogger
+      @inject(TYPES.AuthBusiness) private authBusiness: IAuthBusiness,
+      @inject(TYPES.ILogger) private logger: ILogger,
     ) {}
     @httpPost("/signup")
     async emailSignup(

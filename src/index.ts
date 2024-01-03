@@ -11,28 +11,29 @@ import { ILogger } from "./logger/ILogger"
 
 const logger: ILogger = kernel.get<ILogger>(TYPES.ILogger)
 const limiter = rateLimit({
-    windowMs: 15 * 60 * 1000, // 15 minutes
-    max: 100, // limit each IP to 100 requests per windowMs
+  windowMs: 15 * 60 * 1000, // 15 minutes
+  max: 100, // limit each IP to 100 requests per windowMs
 })
 const server = new Server(kernel)
 server.setConfig((app: express.Application) => {
-    app.use(bodyParser.json())
-    app.use(bodyParser.urlencoded({ extended: true }))
-    app.use(limiter)
+  app.use(bodyParser.json())
+  app.use(bodyParser.urlencoded({ extended: true }))
+  app.use(limiter)
 })
 const app = server.build()
-const appConfigs = kernel.get<Configuration>(TYPES.Configuration).getConfiguration() || {}
+const appConfigs =
+  kernel.get<Configuration>(TYPES.Configuration).getConfiguration() || {}
 const port = _.get(appConfigs, "serverConfig.port", 3000)
 const httpServer = app.listen(port, () => {
-    console.log("MotesApp backend server is running on:" + port)
+  console.log("MotesApp backend server is running on:" + port)
 })
 httpServer.on("connection", function (socket) {
-    socket.setKeepAlive(true, 5)
-    socket.setTimeout(120 * 1000)
-    socket.on("timeout", () => {
-        logger.error("socket timeout")
-        socket.end()
-    })
+  socket.setKeepAlive(true, 5)
+  socket.setTimeout(120 * 1000)
+  socket.on("timeout", () => {
+    logger.error("socket timeout")
+    socket.end()
+  })
 })
 
 httpServer.keepAliveTimeout = 120 * 1000
