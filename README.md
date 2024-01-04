@@ -24,6 +24,9 @@ Gateway server to app APIs of NotesApp.
     ```
     curl --location 'http://localhost:3000/api/status'
     ```
+
+## Sample APIs
+
 - sample signup api:
     ```
     curl --location 'http://localhost:3000/api/auth/signup' \
