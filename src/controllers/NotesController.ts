@@ -28,7 +28,7 @@ export function notesControllerFactory(kernel: Container) {
         `Fetching notes for the user ${req["headers"]["userId"] as string}`,
       )
       const userId: string = req["headers"]["userId"] as string
-      return NotesModel.find()
+      return NotesModel.find({ $or: [{ userId, sharedWith: userId }] })
       // to fetch all the notes belonging to user
     }
 
@@ -41,7 +41,10 @@ export function notesControllerFactory(kernel: Container) {
         } for id: ${id}`,
       )
       const userId: string = req["headers"]["userId"] as string
-      return NotesModel.findOne({ _id: id, userId })
+      return NotesModel.findOne({
+        _id: id,
+        $or: [{ userId, sharedWith: userId }],
+      })
       // to fetch all the notes belonging to user
     }
 
@@ -61,14 +64,25 @@ export function notesControllerFactory(kernel: Container) {
     }
 
     @httpPost("/:id/share")
-    shareNotes(req: express.Request, res: express.Response) {
+    async shareNotes(req: express.Request, res: express.Response) {
       const id: string = req.params.id as string
+      const userId: string = req["headers"]["userId"] as string
+      const sharedWith: string = req.body.sharedWith as string
       this.logger.info(
         `Fetching notes of the user ${
           req["headers"]["userId"] as string
-        } for id: ${id}`,
+        } for id: ${id} and pushing user ${sharedWith} in sharedWith`,
       )
-      return NotesModel.findOne({ _id: id })
+      const existingNote = await NotesModel.findOne({ _id: id, userId })
+      const updatedSharedWith: string[] = _.uniq([
+        ..._.get(existingNote, "sharedWith", []),
+        sharedWith,
+      ])
+      const newNotes = Object.assign(existingNote, { updatedSharedWith })
+      this.logger.info(`Updating notes for noteId: ${id} and userId: ${userId}`)
+      await NotesModel.findOneAndUpdate({ _id: id, userId }, newNotes, {
+        new: true,
+      })
     }
 
     @httpPut("/:id")

@@ -2,6 +2,7 @@ import { Schema } from "mongoose"
 
 const NotesSchema: Schema = new Schema({
   userId: { type: String, required: true },
+  sharedWith: { type: [String], required: false },
   title: { type: String, required: true, default: "" },
   note: { type: String, required: true, default: "" },
 }).index(
