@@ -1,4 +1,4 @@
-import UserModel from "../../models/UserModel"
+import UserModel from "../../models/user/UserModel"
 import IAuthBusiness, {
   ILoginRequest,
   ILoginResponse,
@@ -6,7 +6,7 @@ import IAuthBusiness, {
   ISignUpResponse,
 } from "./IAuthBusiness"
 import { injectable, inject } from "inversify"
-import User from "../../models/User"
+import User from "../../models/user/User"
 import { TYPES } from "../../ioc/types"
 import { ILogger } from "../../logger/ILogger"
 const bcrypt = require("bcrypt")
