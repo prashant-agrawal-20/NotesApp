@@ -72,9 +72,7 @@ class AuthBusiness implements IAuthBusiness {
 
   // --------------------------------------------- Private methods ---------------------------------------------------
 
-  private generateJWTToken(
-    userId: string
-  ): string {
+  private generateJWTToken(userId: string): string {
     const secretKey: string = _.get(
       this.configuration.getConfiguration(),
       "serverConfig.secretKey",
