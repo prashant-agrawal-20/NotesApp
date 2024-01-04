@@ -23,6 +23,56 @@ Gateway server to app APIs of NotesApp.
 - verify if the app is running using this curl command:
     ```
     curl --location 'http://localhost:3000/api/status'
-    reposne: `Status is OK`
     ```
+- sample signup api:
+    ```
+    curl --location 'http://localhost:3000/api/auth/signup' \
+    --header 'Content-Type: application/json' \
+    --data-raw '{
+    "userId": "a.prashant2021@gmail.com",
+    "password": "Prashant@123",
+    "address": "Bangalore(560068)",
+    "phoneNumber": "+918146788869"
+    }'
+    ```
+- sample login api (will receive a token in response to be used in other APIs): 
+    ```
+    curl --location 'http://localhost:3000/api/auth/login' \
+    --header 'Content-Type: application/json' \
+    --data-raw '{
+        "userId": "a.prashant2021@gmail.com",
+        "password": "Prashant@123"
+    }'
+    ```
+- sample notes API to fetch all notes of a user:
+    ```
+    curl --location --request GET 'http://localhost:3000/api/notes/' \
+    --header 'Authorization: <token-received-at-login>' \
+    --header 'Content-Type: application/json' \
+    --data-raw '{
+        "userId": "a.prashant2021@gmail.com",
+        "password": "Prashant@123"
+    }'
+    ```
+- sample notes API to fetch a note using note id:
+    ```
+    curl --location --request GET 'http://localhost:3000/api/notes/<_id>' \
+    --header 'Authorization: <token-received-at-login>' \
+    --header 'Content-Type: application/json' \
+    --data-raw '{
+        "userId": "a.prashant2021@gmail.com",
+        "password": "Prashant@123"
+    }'
+    ```
+- sample notes API to create a note:
+    ```
+    curl --location 'http://localhost:3000/api/notes/' \
+    --header 'Authorization: <token-received-at-login>' \
+    --header 'Content-Type: application/json' \
+    --data '{
+        "title": "Assigment",
+        "note": "This assigment is made using Node.js, express, typescript, mongo"
+    }'
+    ```
+
     
