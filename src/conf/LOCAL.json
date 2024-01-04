@@ -8,5 +8,11 @@
   },
   "logging": {
     "logToConsole": true
+  },
+  "mongoConfig": {
+    "database": "speer-assignment",
+    "mongoUrl": "mongodb://localhost:27017",
+    "user": "",
+    "password": ""
   }
 }
