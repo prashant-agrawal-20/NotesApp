@@ -13,6 +13,8 @@ import * as express from "express"
 import { INoteBody } from "../models/notes/Notes"
 import NotesModel from "../models/notes/NotesModel"
 import * as _ from "lodash"
+import UserModel from "../models/user/UserModel"
+import User from "../models/user/User"
 
 export function notesControllerFactory(kernel: Container) {
   @controller(
@@ -28,7 +30,7 @@ export function notesControllerFactory(kernel: Container) {
         `Fetching notes for the user ${req["headers"]["userId"] as string}`,
       )
       const userId: string = req["headers"]["userId"] as string
-      return NotesModel.find({ $or: [{ userId, sharedWith: userId }] })
+      return NotesModel.find({ $or: [{ userId }, { sharedWith: userId }] })
       // to fetch all the notes belonging to user
     }
 
@@ -43,7 +45,7 @@ export function notesControllerFactory(kernel: Container) {
       const userId: string = req["headers"]["userId"] as string
       return NotesModel.findOne({
         _id: id,
-        $or: [{ userId, sharedWith: userId }],
+        $or: [{ userId }, { sharedWith: userId }],
       })
       // to fetch all the notes belonging to user
     }
@@ -68,6 +70,15 @@ export function notesControllerFactory(kernel: Container) {
       const id: string = req.params.id as string
       const userId: string = req["headers"]["userId"] as string
       const shareWith: string = req.body.shareWith as string
+      if (shareWith === userId) {
+        res.status(400).json({ error: "shared user cannot be yourself" })
+        return
+      }
+      const shareWithUser: User = await UserModel.findOne({ userId: shareWith })
+      if (!shareWithUser) {
+        res.status(400).json({ error: "shared user not found" })
+        return
+      }
       this.logger.info(
         `Fetching notes of the user ${
           req["headers"]["userId"] as string
@@ -82,9 +93,15 @@ export function notesControllerFactory(kernel: Container) {
         sharedWith: updatedSharedWith,
       })
       this.logger.info(`Updating notes for noteId: ${id} and userId: ${userId}`)
-      await NotesModel.findOneAndUpdate({ _id: id, userId }, newNotes, {
-        new: true,
-      })
+      const response = await NotesModel.findOneAndUpdate(
+        { _id: id, userId },
+        newNotes,
+        {
+          new: true,
+        },
+      )
+      this.logger.info("Notes shared successfully")
+      return response
     }
 
     @httpPut("/:id")
@@ -99,10 +116,15 @@ export function notesControllerFactory(kernel: Container) {
       const existingNote = await NotesModel.findOne({ _id: id, userId })
       const newNotes = Object.assign(existingNote, { title, note })
       this.logger.info(`Updating notes for noteId: ${id} and userId: ${userId}`)
-      await NotesModel.findOneAndUpdate({ _id: id, userId: userId }, newNotes, {
-        new: true,
-      })
+      const response = await NotesModel.findOneAndUpdate(
+        { _id: id, userId: userId },
+        newNotes,
+        {
+          new: true,
+        },
+      )
       this.logger.info("Updated Notes successfully..", { noteId: id })
+      return response
     }
 
     @httpDelete("/:id")
