@@ -58,7 +58,7 @@ class AuthBusiness implements IAuthBusiness {
           `User ${userId} password matched!, generating jwt token`,
         )
         success = true
-        token = this.generateJWTToken(userId, password, user.password)
+        token = this.generateJWTToken(userId)
       } else {
         this.logger.error(`User ${userId} authentication failed`)
         res.status(401).json({ error: "Authentication failed!!" })

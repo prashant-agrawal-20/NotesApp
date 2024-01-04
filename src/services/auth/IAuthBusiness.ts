@@ -1,6 +1,6 @@
 import * as express from "express"
 export interface ILoginResponse {
-  matched: boolean
+  success: boolean
   userId?: string
   token?: string
 }
