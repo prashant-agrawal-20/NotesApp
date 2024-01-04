@@ -11,7 +11,7 @@ const appConfig = kernel
 const databaseName: string = _.get(
   appConfig,
   "mongoConfig.database",
-  "speer-assignment",
+  "sample-assignment",
 )
 const mongoUrl: string = _.get(appConfig, "mongoConfig.mongoUrl", "") + "/"
 const user: string = _.get(appConfig, "mongoConfig.user", "")

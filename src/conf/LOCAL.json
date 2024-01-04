@@ -10,7 +10,7 @@
     "logToConsole": true
   },
   "mongoConfig": {
-    "database": "speer-assignment",
+    "database": "sample-assignment",
     "mongoUrl": "mongodb://localhost:27017",
     "user": "",
     "password": ""
