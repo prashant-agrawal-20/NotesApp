@@ -12,8 +12,7 @@ export class AuthUtil implements IAuthUtil {
   constructor(
     @inject(TYPES.ILogger) private logger: ILogger,
     @inject(TYPES.Configuration) private configuration: Configuration,
-  ) {
-  }
+  ) {}
 
   public getJWTSecretKey(): string {
     return _.get(
