@@ -1,5 +1,5 @@
 export default interface User {
-  emailId: string
+  userId: string
   password: string
   address?: string
   phoneNumber: string

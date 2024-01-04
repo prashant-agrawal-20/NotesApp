@@ -25,7 +25,7 @@ export function authControllerFactory(kernel: Container) {
       req: express.Request,
       res: express.Response,
     ): Promise<ILoginResponse> {
-      return this.authBusiness.verifyUserLogin(req.body)
+      return this.authBusiness.verifyUserLogin(req.body, res)
     }
   }
   return AuthController

@@ -1,7 +1,8 @@
+import * as express from "express"
 export interface ILoginResponse {
-  emailId: string
-  phoneNumber: string
-  address?: string
+  matched: boolean
+  userId?: string
+  token?: string
 }
 
 export interface ISignUpResponse {
@@ -14,12 +15,15 @@ export interface ISignUpRequest extends ILoginRequest {
 }
 
 export interface ILoginRequest {
-  emailId: string
-  password: string
+  userId: string // userId can be an emailId which is always unique
+  password: string // while saving password it should be encrypted
 }
 
 interface IAuthBusiness {
   registerUser(signUpRequest: ISignUpRequest): Promise<ISignUpResponse>
-  verifyUserLogin(loginRequest: ILoginRequest): Promise<ILoginResponse>
+  verifyUserLogin(
+    loginRequest: ILoginRequest,
+    res: express.Response,
+  ): Promise<ILoginResponse>
 }
 export default IAuthBusiness

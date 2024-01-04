@@ -2,7 +2,9 @@
   "appName": "NotesApp",
   "loggingDir": "logs",
   "serverConfig": {
-    "port": 3000
+    "port": 3000,
+    "secretKey": "42cf1685-7ae3-444f-b24d-0ba2ce9be042",
+    "tokenExpiry": "12h"
   },
   "logging": {
     "logToConsole": true
