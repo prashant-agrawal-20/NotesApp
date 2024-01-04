@@ -4,11 +4,11 @@ Gateway server to app APIs of NotesApp.
 ## SetUp
 
 - Install [Homebrew](https://brew.sh)
-- `brew install node@21`
+- `brew install node@21` this command will install node version 21, you can skip this step if you have node version >=18 already installed
 - Node version supported is >=18
 - check the npm version using to check if npm is installed successfully with Node:
     `npm --version`
-- `npm install -g pnpm`
+- `npm install -g pnpm` this command will install pnpm globally
 - can change the port from LOCAL.json file (`src/conf/LOCAL.json`) if required, by default it is 3000
 - log directory can be changed by configuring logDir in LOCAL.json file -> logging -> logDir
 - similarly logToFile can be changed from LOCAL.json file -> logging -> logToFile (true/false)
