@@ -1,6 +1,14 @@
 # NotesApp
 Gateway server to app APIs of NotesApp.
 
+## Frameworks/DB/Tech used:
+- Node.js with Typescript (for static type checking)
+- express framework (for RESTful API implementation)
+- InversifyJs (for IOC)
+- Mongo DB (for database)
+- Express Rate limiter (rate limit is: 100 requests per 15 mins configured in `index.ts` file)
+- implemented jsonwebtoken npm package (for authentication purpose)
+
 ## SetUp
 
 - Install [Homebrew](https://brew.sh)
@@ -116,5 +124,6 @@ Gateway server to app APIs of NotesApp.
     --header 'Authorization: <token-received-at-login>'
     ```
     - here `q` is the text to search
+    - works using mongo text indexing
 
     
