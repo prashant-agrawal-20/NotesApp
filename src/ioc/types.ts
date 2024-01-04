@@ -4,4 +4,6 @@ export const TYPES = {
   ILogger: Symbol("NotesApp:ILogger"),
   ConfigurationDirectory: Symbol("NotesApp:ConfigurationDirectory"),
   Configuration: Symbol("NotesApp:Configuration"),
+  AuthUtil: Symbol("NotesApp:AuthUtil"),
+  AuthMiddleware: Symbol("NotesApp:AuthMiddleware"),
 }

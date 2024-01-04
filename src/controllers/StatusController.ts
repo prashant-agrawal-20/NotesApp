@@ -13,6 +13,7 @@ export function statusControllerFactory(kernel: Container) {
       return "Status is OK"
     }
   }
+  return StatusController
 }
 
 export default statusControllerFactory

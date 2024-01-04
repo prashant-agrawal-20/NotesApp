@@ -10,16 +10,17 @@ import User from "../../models/User"
 import { TYPES } from "../../ioc/types"
 import { ILogger } from "../../logger/ILogger"
 const bcrypt = require("bcrypt")
-const jwt = require("jsonwebtoken")
 import * as express from "express"
 import { Configuration } from "../../conf/Configuration"
 import * as _ from "lodash"
+import { IAuthUtil } from "../../util/IAuthUtil"
 
 @injectable()
 class AuthBusiness implements IAuthBusiness {
   constructor(
     @inject(TYPES.ILogger) private logger: ILogger,
     @inject(TYPES.Configuration) private configuration: Configuration,
+    @inject(TYPES.AuthUtil) private authUtil: IAuthUtil,
   ) {}
 
   async registerUser(signUpRequest: ISignUpRequest): Promise<ISignUpResponse> {
@@ -58,7 +59,7 @@ class AuthBusiness implements IAuthBusiness {
           `User ${userId} password matched!, generating jwt token`,
         )
         success = true
-        token = this.generateJWTToken(userId)
+        token = this.authUtil.generateJWTToken(userId)
       } else {
         this.logger.error(`User ${userId} authentication failed`)
         res.status(401).json({ error: "Authentication failed!!" })
@@ -71,21 +72,5 @@ class AuthBusiness implements IAuthBusiness {
   }
 
   // --------------------------------------------- Private methods ---------------------------------------------------
-
-  private generateJWTToken(userId: string): string {
-    const secretKey: string = _.get(
-      this.configuration.getConfiguration(),
-      "serverConfig.secretKey",
-      "",
-    )
-    const tokenExpiry: string = _.get(
-      this.configuration.getConfiguration(),
-      "serverConfig.tokenExpiry",
-      "12h",
-    )
-    return jwt.sign({ userId: userId }, secretKey, {
-      expiresIn: tokenExpiry,
-    })
-  }
 }
 export default AuthBusiness
