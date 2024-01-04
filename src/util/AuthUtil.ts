@@ -13,10 +13,6 @@ export class AuthUtil implements IAuthUtil {
     @inject(TYPES.ILogger) private logger: ILogger,
     @inject(TYPES.Configuration) private configuration: Configuration,
   ) {
-    // this.getJWTSecretKey = this.getJWTSecretKey.bind(this)
-    // this.getJWTTokenExpiry = this.getJWTTokenExpiry.bind(this)
-    // this.generateJWTToken = this.generateJWTToken.bind(this)
-    // this.decodeJWTToken = this.decodeJWTToken.bind(this)
   }
 
   public getJWTSecretKey(): string {
