@@ -58,6 +58,7 @@ Gateway server to app APIs of NotesApp.
     }'
     ```
 - sample notes API to fetch a note using note id:
+    - here note id is `_id` returned at the time of creating note or at the time of fetching notes for a user
     ```
     curl --location --request GET 'http://localhost:3000/api/notes/<_id>' \
     --header 'Authorization: <token-received-at-login>' \
@@ -77,5 +78,34 @@ Gateway server to app APIs of NotesApp.
         "note": "This assigment is made using Node.js, express, typescript, mongo"
     }'
     ```
+- sample notes API to share a note with the other existing user:
+    - shared user must exist in system before hand.
+    - The shared user will just be able to read the notes.
+    - The shared user will not be able to edit/share/delete the shared notes.
+    ```
+    curl --location 'http://localhost:3000/api/notes/<id>/share' \
+    --header 'Authorization: <token-received-at-login>' \
+    --header 'Content-Type: application/json' \
+    --data-raw '{
+        "shareWith": "a.prashant2022@gmail.com"
+    }'
+    ```
+- sample note API to edit the note:
+    ```
+    curl --location --request PUT 'http://localhost:3000/api/notes/<_id>' \
+    --header 'Authorization: <token-received-at-login>' \
+    --header 'Content-Type: application/json' \
+    --data '{
+        "title": "Assigment updated",
+        "note": "Updated: This assigment is made using Node.js, express, typescript, mongo"
+    }'
+    ```
+- sample note API to delete the note:
+    ```
+    curl --location --request DELETE 'http://localhost:3000/api/notes/<_id>' \
+    --header 'Authorization: <token-received-at-login>'
+    ```
+
+
 
     
