@@ -21,6 +21,7 @@ Gateway server to all APIs of NotesApp.
 - similarly logToFile can be changed from LOCAL.json file -> logging -> logToFile (true/false)
 - mongo config must be added here: LOCAL.json -> mongoConfig (sample config present in the file)
 - you can configure mongo db locally if not using mongo atlas using the [Mongo Doc](https://www.mongodb.com/docs/manual/tutorial/install-mongodb-on-os-x/)
+- We can setup the log level using LOG_LEVEL (configured in scripts in package.json file), like in `start-dev` command
 
 
 ## Run

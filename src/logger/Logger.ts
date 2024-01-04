@@ -163,6 +163,6 @@ export class Logger implements ILogger {
     }
   }
   private shouldLogAtLevel(logLevel: LogLevel): boolean {
-    return this.logLevel <= logLevel
+    return this.logLevel >= logLevel
   }
 }

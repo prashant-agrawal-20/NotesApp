@@ -13,7 +13,7 @@
     "tslint": "tslint -c tslint.json -p tsconfig.json",
     "prepare": "husky install",
     "prettify": "pnpm prettier src/ --write",
-    "start-dev": "pnpm clean && APP_ENV=LOCAL ENVIRONMENT=LOCAL pnpm build && APP_NAME=NotesApp APP_ENV=LOCAL ENVIRONMENT=LOCAL node dist/index.js"
+    "start-dev": "pnpm clean && APP_ENV=LOCAL ENVIRONMENT=LOCAL pnpm build && APP_NAME=NotesApp APP_ENV=LOCAL ENVIRONMENT=LOCAL LOG_LEVEL=DEBUG node dist/index.js"
   },
   "dependencies": {
     "express": "^4.18.2",
