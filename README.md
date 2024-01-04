@@ -1,5 +1,5 @@
 # NotesApp
-Gateway server to app APIs of NotesApp.
+Gateway server to all APIs of NotesApp.
 
 ## Frameworks/DB/Tech used:
 - Node.js with Typescript (for static type checking)
