@@ -27,7 +27,12 @@ Gateway server to app APIs of NotesApp.
 
 ## Sample APIs
 
-- sample signup api:
+- server status check API:
+    ```
+    curl --location 'http://localhost:3000/api/status'
+    ```
+
+- sample user signup api:
     ```
     curl --location 'http://localhost:3000/api/auth/signup' \
     --header 'Content-Type: application/json' \
@@ -38,7 +43,7 @@ Gateway server to app APIs of NotesApp.
     "phoneNumber": "+918146788869"
     }'
     ```
-- sample login api (will receive a token in response to be used in other APIs): 
+- sample user login api (will receive a token in response to be used in other APIs): 
     ```
     curl --location 'http://localhost:3000/api/auth/login' \
     --header 'Content-Type: application/json' \
@@ -105,7 +110,11 @@ Gateway server to app APIs of NotesApp.
     curl --location --request DELETE 'http://localhost:3000/api/notes/<_id>' \
     --header 'Authorization: <token-received-at-login>'
     ```
-
-
+- sample notes search API:
+    ```
+    curl --location 'http://localhost:3000/api/search?q=note' \
+    --header 'Authorization: <token-received-at-login>'
+    ```
+    - here `q` is the text to search
 
     
