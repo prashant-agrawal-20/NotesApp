@@ -21,8 +21,8 @@ Gateway server to app APIs of NotesApp.
 - `pnpm start-dev` to build and start the server
 - app will start on port `3000`
 - verify if the app is running using this curl command:
-    `curl --location 'http://localhost:3000/api/status'`
     ```
+    curl --location 'http://localhost:3000/api/status'
     reposne: `Status is OK`
     ```
     
