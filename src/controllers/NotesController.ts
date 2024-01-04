@@ -79,7 +79,7 @@ export function notesControllerFactory(kernel: Container) {
         shareWith,
       ])
       const newNotes = Object.assign(existingNote, {
-        sharedWith: updatedSharedWith
+        sharedWith: updatedSharedWith,
       })
       this.logger.info(`Updating notes for noteId: ${id} and userId: ${userId}`)
       await NotesModel.findOneAndUpdate({ _id: id, userId }, newNotes, {
