@@ -67,18 +67,18 @@ export function notesControllerFactory(kernel: Container) {
     async shareNotes(req: express.Request, res: express.Response) {
       const id: string = req.params.id as string
       const userId: string = req["headers"]["userId"] as string
-      const sharedWith: string = req.body.sharedWith as string
+      const shareWith: string = req.body.shareWith as string
       this.logger.info(
         `Fetching notes of the user ${
           req["headers"]["userId"] as string
-        } for id: ${id} and pushing user ${sharedWith} in sharedWith`,
+        } for id: ${id} and pushing user ${shareWith} in sharedWith`,
       )
       const existingNote = await NotesModel.findOne({ _id: id, userId })
       const updatedSharedWith: string[] = _.uniq([
         ..._.get(existingNote, "sharedWith", []),
-        sharedWith,
+        shareWith,
       ])
-      const newNotes = Object.assign(existingNote, { updatedSharedWith })
+      const newNotes = Object.assign(existingNote, { sharedWith: updatedSharedWith })
       this.logger.info(`Updating notes for noteId: ${id} and userId: ${userId}`)
       await NotesModel.findOneAndUpdate({ _id: id, userId }, newNotes, {
         new: true,
