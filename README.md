@@ -5,7 +5,6 @@ Gateway server to app APIs of NotesApp.
 
 - Install [Homebrew](https://brew.sh)
 - `brew install node@21` this command will install node version 21, you can skip this step if you have node version >=18 already installed
-- Node version supported is >=18
 - check the npm version using to check if npm is installed successfully with Node:
     `npm --version`
 - `npm install -g pnpm` this command will install pnpm globally
