@@ -46,10 +46,10 @@ Gateway server to all APIs of NotesApp.
     curl --location 'http://localhost:3000/api/auth/signup' \
     --header 'Content-Type: application/json' \
     --data-raw '{
-    "userId": "a.prashant2021@gmail.com",
+    "userId": "xyz@gmail.com",
     "password": "Prashant@123",
     "address": "Bangalore(560068)",
-    "phoneNumber": "+918146788869"
+    "phoneNumber": "+918811234455"
     }'
     ```
 - sample user login api (will receive a token in response to be used in other APIs): 
@@ -57,7 +57,7 @@ Gateway server to all APIs of NotesApp.
     curl --location 'http://localhost:3000/api/auth/login' \
     --header 'Content-Type: application/json' \
     --data-raw '{
-        "userId": "a.prashant2021@gmail.com",
+        "userId": "xyz@gmail.com",
         "password": "Prashant@123"
     }'
     ```
@@ -67,7 +67,7 @@ Gateway server to all APIs of NotesApp.
     --header 'Authorization: <token-received-at-login>' \
     --header 'Content-Type: application/json' \
     --data-raw '{
-        "userId": "a.prashant2021@gmail.com",
+        "userId": "xyz@gmail.com",
         "password": "Prashant@123"
     }'
     ```
@@ -78,7 +78,7 @@ Gateway server to all APIs of NotesApp.
     --header 'Authorization: <token-received-at-login>' \
     --header 'Content-Type: application/json' \
     --data-raw '{
-        "userId": "a.prashant2021@gmail.com",
+        "userId": "xyz@gmail.com",
         "password": "Prashant@123"
     }'
     ```
@@ -101,7 +101,7 @@ Gateway server to all APIs of NotesApp.
     --header 'Authorization: <token-received-at-login>' \
     --header 'Content-Type: application/json' \
     --data-raw '{
-        "shareWith": "a.prashant2022@gmail.com"
+        "shareWith": "xyz123@gmail.com"
     }'
     ```
 - sample note API to edit the note:
