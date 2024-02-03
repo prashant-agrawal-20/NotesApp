@@ -7,10 +7,10 @@ import rateLimit from "express-rate-limit"
 import { Configuration } from "./conf/Configuration"
 import { TYPES } from "./ioc/types"
 import * as _ from "lodash"
-import { ILogger, TYPES as LoggerTypes } from "@openscriptsin/node-logger"
+import { ILogger, TYPES as LOGGER_TYPES } from "@openscriptsin/node-logger"
 import { connectMongo } from "./middlewares/mongo/MongoAccess"
 
-const logger: ILogger = kernel.get<ILogger>(LoggerTypes.ILogger)
+const logger: ILogger = kernel.get<ILogger>(LOGGER_TYPES.ILogger)
 const limiter = rateLimit({
   windowMs: 15 * 60 * 1000, // 15 minutes
   max: 100, // limit each IP to 100 requests per windowMs

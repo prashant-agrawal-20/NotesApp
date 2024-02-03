@@ -3,14 +3,14 @@ import { Container, inject } from "inversify"
 import { controller, httpGet, httpPost } from "inversify-express-utils"
 import IAuthBusiness, { ILoginResponse } from "../services/auth/IAuthBusiness"
 import { TYPES } from "../ioc/types"
-import { ILogger, TYPES as LoggerTypes } from "@openscriptsin/node-logger"
+import { ILogger, TYPES as LOGGER_TYPES } from "@openscriptsin/node-logger"
 
 export function authControllerFactory(kernel: Container) {
   @controller("/api/auth")
   class AuthController {
     constructor(
       @inject(TYPES.AuthBusiness) private authBusiness: IAuthBusiness,
-      @inject(LoggerTypes.ILogger) private logger: ILogger,
+      @inject(LOGGER_TYPES.ILogger) private logger: ILogger,
     ) {}
     @httpPost("/signup")
     async emailSignup(

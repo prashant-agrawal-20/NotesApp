@@ -6,7 +6,7 @@ import {
   ILogger,
   ILogOptions,
   Logger,
-  TYPES as LoggerTypes,
+  TYPES as LOGGER_TYPES,
 } from "@openscriptsin/node-logger"
 import { Configuration } from "../conf/Configuration"
 import { AuthUtil } from "../util/AuthUtil"
@@ -17,7 +17,7 @@ import AuthMiddleware from "../middlewares/auth/AuthMiddleware"
 export function BusinessKernelModule(kernel: Container) {
   return new ContainerModule((bind: interfaces.Bind) => {
     bind<string>(TYPES.ConfigurationDirectory).toConstantValue("conf")
-    bind<ILogOptions>(LoggerTypes.LogOptions).toDynamicValue(
+    bind<ILogOptions>(LOGGER_TYPES.LogOptions).toDynamicValue(
       (context: interfaces.Context) => {
         const appConfig = context.container
           .get<any>(TYPES.Configuration)
@@ -39,7 +39,7 @@ export function BusinessKernelModule(kernel: Container) {
     bind<Configuration>(TYPES.Configuration)
       .to(Configuration)
       .inSingletonScope()
-    bind<ILogger>(LoggerTypes.ILogger).to(Logger).inSingletonScope()
+    bind<ILogger>(LOGGER_TYPES.ILogger).to(Logger).inSingletonScope()
     bind<IAuthUtil>(TYPES.AuthUtil).to(AuthUtil).inSingletonScope()
     bind<IAuthMiddleware>(TYPES.AuthMiddleware)
       .to(AuthMiddleware)
