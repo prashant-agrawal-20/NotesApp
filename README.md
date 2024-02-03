@@ -8,6 +8,7 @@ Gateway server to all APIs of NotesApp.
 - Mongo DB (for database)
 - Express Rate limiter (rate limit is: 100 requests per 15 mins configured in `index.ts` file)
 - implemented jsonwebtoken npm package (for authentication purpose)
+- using [node-logger](https://www.npmjs.com/package/@openscriptsin/node-logger) package for logging published by me as an opensource npm package on [npmjs](https://www.npmjs.com/).
 
 ## SetUp
 
