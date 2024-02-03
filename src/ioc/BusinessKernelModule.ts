@@ -2,7 +2,12 @@ import { Container, ContainerModule, interfaces } from "inversify"
 import IAuthBusiness from "../services/auth/IAuthBusiness"
 import { TYPES } from "./types"
 import AuthBusiness from "../services/auth/AuthBusiness"
-import { ILogger, ILogOptions, Logger, TYPES as LoggerTypes } from "@openscriptsin/node-logger"
+import {
+  ILogger,
+  ILogOptions,
+  Logger,
+  TYPES as LoggerTypes,
+} from "@openscriptsin/node-logger"
 import { Configuration } from "../conf/Configuration"
 import { AuthUtil } from "../util/AuthUtil"
 import { IAuthUtil } from "../util/IAuthUtil"
