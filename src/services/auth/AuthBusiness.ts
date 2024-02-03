@@ -8,7 +8,7 @@ import IAuthBusiness, {
 import { injectable, inject } from "inversify"
 import User from "../../models/user/User"
 import { TYPES } from "../../ioc/types"
-import { ILogger } from "../../logger/ILogger"
+import { ILogger, TYPES as LoggerTypes } from "@openscriptsin/node-logger"
 const bcrypt = require("bcrypt")
 import * as express from "express"
 import { Configuration } from "../../conf/Configuration"
@@ -18,7 +18,7 @@ import { IAuthUtil } from "../../util/IAuthUtil"
 @injectable()
 class AuthBusiness implements IAuthBusiness {
   constructor(
-    @inject(TYPES.ILogger) private logger: ILogger,
+    @inject(LoggerTypes.ILogger) private logger: ILogger,
     @inject(TYPES.Configuration) private configuration: Configuration,
     @inject(TYPES.AuthUtil) private authUtil: IAuthUtil,
   ) {}

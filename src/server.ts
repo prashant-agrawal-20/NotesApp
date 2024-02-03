@@ -2,15 +2,14 @@ import { InversifyExpressServer, TYPE } from "inversify-express-utils"
 import * as express from "express"
 import { Container } from "inversify"
 import util from "util"
-import { ILogger } from "./logger/ILogger"
-import { TYPES } from "./ioc/types"
+import { ILogger, TYPES as LoggerTypes } from "@openscriptsin/node-logger"
 export class APIServer extends InversifyExpressServer {
   private kernel1: Container
   private logger: ILogger
   constructor(kernel: Container) {
     super(kernel)
     this.kernel1 = kernel
-    this.logger = kernel.get<ILogger>(TYPES.ILogger)
+    this.logger = kernel.get<ILogger>(LoggerTypes.ILogger)
     const obj: any = this
     obj.handlerFactory = this.handlerFactoryFunc
   }

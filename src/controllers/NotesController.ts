@@ -6,7 +6,7 @@ import {
   httpPost,
   httpPut,
 } from "inversify-express-utils"
-import { ILogger } from "../logger/ILogger"
+import { ILogger, TYPES as LoggerTypes } from "@openscriptsin/node-logger"
 import { IAuthMiddleware } from "../middlewares/auth/IAuthMiddleware"
 import { TYPES } from "../ioc/types"
 import * as express from "express"
@@ -22,7 +22,7 @@ export function notesControllerFactory(kernel: Container) {
     kernel.get<IAuthMiddleware>(TYPES.AuthMiddleware).authenticate,
   )
   class NotesController {
-    constructor(@inject(TYPES.ILogger) private logger: ILogger) {}
+    constructor(@inject(LoggerTypes.ILogger) private logger: ILogger) {}
 
     @httpGet("/")
     getNotes(req: express.Request, res: express.Response) {

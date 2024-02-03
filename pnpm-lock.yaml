@@ -8,6 +8,9 @@ overrides:
   express: ^4.18.2
 
 dependencies:
+  '@openscriptsin/node-logger':
+    specifier: 0.1.0
+    version: 0.1.0
   bcrypt:
     specifier: ^5.1.1
     version: 5.1.1
@@ -151,6 +154,17 @@ packages:
     resolution: {integrity: sha512-t7c5K033joZZMspnHg/gWPE4kandgc2OxE74aYOtGKfgB9VPuVJPix0H6fhmm2erj5PBJ21mqcx34lpIGtUCsQ==}
     dependencies:
       sparse-bitfield: 3.0.3
+    dev: false
+
+  /@openscriptsin/node-logger@0.1.0:
+    resolution: {integrity: sha512-jkiiuFUi5RisfDqjXVD6dWcJKrrWjyc+YdiLACyRCKSN1XFcYYyPuDhWglzmN9Ti3M+5HZMiW6tor15/qwNdhg==}
+    engines: {node: '>=16'}
+    dependencies:
+      inversify: 6.0.2
+      lodash: 4.17.21
+      mkdirp: 3.0.1
+      winston: 3.11.0
+      winston-daily-rotate-file: 4.7.1(winston@3.11.0)
     dev: false
 
   /@sinonjs/commons@2.0.0:

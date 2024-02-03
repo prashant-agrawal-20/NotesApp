@@ -1,10 +1,10 @@
 import mongoose from "mongoose"
 import kernel from "../../ioc/kernel"
 import { TYPES } from "../../ioc/types"
-import { ILogger } from "../../logger/ILogger"
+import { ILogger, TYPES as LoggerTypes } from "@openscriptsin/node-logger"
 import { Configuration } from "../../conf/Configuration"
 import * as _ from "lodash"
-const logger: ILogger = kernel.get<ILogger>(TYPES.ILogger)
+const logger: ILogger = kernel.get<ILogger>(LoggerTypes.ILogger)
 const appConfig = kernel
   .get<Configuration>(TYPES.Configuration)
   .getConfiguration()

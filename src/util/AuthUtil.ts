@@ -1,5 +1,5 @@
 import { inject, injectable } from "inversify"
-import { ILogger } from "../logger/ILogger"
+import { ILogger, TYPES as LoggerTypes } from "@openscriptsin/node-logger"
 import { TYPES } from "../ioc/types"
 import { Configuration } from "../conf/Configuration"
 import * as _ from "lodash"
@@ -10,7 +10,7 @@ import * as express from "express"
 @injectable()
 export class AuthUtil implements IAuthUtil {
   constructor(
-    @inject(TYPES.ILogger) private logger: ILogger,
+    @inject(LoggerTypes.ILogger) private logger: ILogger,
     @inject(TYPES.Configuration) private configuration: Configuration,
   ) {}
 

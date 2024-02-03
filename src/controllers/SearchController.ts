@@ -1,6 +1,6 @@
 import { inject, Container } from "inversify"
 import { controller, httpGet } from "inversify-express-utils"
-import { ILogger } from "../logger/ILogger"
+import { ILogger, TYPES as LoggerTypes } from "@openscriptsin/node-logger"
 import { TYPES } from "../ioc/types"
 import * as express from "express"
 import NotesModel from "../models/notes/NotesModel"
@@ -12,7 +12,7 @@ export function searchControllerFactory(kernel: Container) {
     kernel.get<IAuthMiddleware>(TYPES.AuthMiddleware).authenticate,
   )
   class SearchController {
-    constructor(@inject(TYPES.ILogger) private logger: ILogger) {}
+    constructor(@inject(LoggerTypes.ILogger) private logger: ILogger) {}
     @httpGet("/")
     async searchNotes(req: express.Request, res: express.Response) {
       const queryText: string = req.query.q as string
